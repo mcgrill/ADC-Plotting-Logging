@@ -1,4 +1,4 @@
-
+ 
 /********************** ADC Live Plotting & Logging Code ****************************
 	Sends ADC value from pin F0 in hex from the M2 microcontroller [http://medesign.seas.upenn.edu/index.php/Guides/MaEvArM].
 

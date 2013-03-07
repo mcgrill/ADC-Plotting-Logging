@@ -6,9 +6,9 @@
 # --------------------------------------------------------
 
 # --------------------------------------------------------
-# if you write separate C files to include in main
+# if you write separate C files to include in ADC_live_plot
 # add their .o targets to the OBJECTS line below
-# (e.g. "OBJECTS = main.o myfile.o")
+# (e.g. "OBJECTS = ADC_live_plot.o myfile.o")
 # --------------------------------------------------------
 OBJECTS    = ADC_live_plot.o /m2_libraries/m_usb.o
 
@@ -32,7 +32,7 @@ CLOCK      = 16000000
 COMPILE = avr-gcc -std=c99 -I /m2_libraries -Wall -Os -DF_CPU=$(CLOCK) -mmcu=$(DEVICE)
 
 # symbolic targets:
-all:	main.hex
+all:	ADC_live_plot.hex
 
 .c.o:
 	$(COMPILE) -c $< -o $@
@@ -47,22 +47,22 @@ install: flash
 
 flash: all
 	dfu-programmer atmega32u4 erase
-	dfu-programmer atmega32u4 flash main.hex
+	dfu-programmer atmega32u4 flash ADC_live_plot.hex
 
 clean:
-	rm -f main.hex main.elf $(OBJECTS)
+	rm -f ADC_live_plot.hex ADC_live_plot.elf $(OBJECTS)
 
 # file targets:
-main.elf: $(OBJECTS)
-	$(COMPILE) -o main.elf $(OBJECTS) $(LIBRARIES)
+ADC_live_plot.elf: $(OBJECTS)
+	$(COMPILE) -o ADC_live_plot.elf $(OBJECTS) $(LIBRARIES)
 
-main.hex: main.elf
-	rm -f main.hex
-	avr-objcopy -j .text -j .data -O ihex main.elf main.hex
+ADC_live_plot.hex: ADC_live_plot.elf
+	rm -f ADC_live_plot.hex
+	avr-objcopy -j .text -j .data -O ihex ADC_live_plot.elf ADC_live_plot.hex
 
 # Targets for code debugging and analysis:
-disasm:	main.elf
-	avr-objdump -d main.elf
+disasm:	ADC_live_plot.elf
+	avr-objdump -d ADC_live_plot.elf
 
 cpp:
-	$(COMPILE) -E main.c
+	$(COMPILE) -E ADC_live_plot.c

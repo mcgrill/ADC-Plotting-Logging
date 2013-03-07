@@ -13,11 +13,11 @@
 %% Initialize program and USB port
 % Close any existing open port connections
 % For the first time running, comment this.
-if(exist('M2USB'))
-    fclose(M2USB);
-else
-    fclose(instrfindall);
-end
+% if(exist('M2USB'))
+%     fclose(M2USB);
+% else
+%     fclose(instrfindall);
+% end
 
 clear all
 close all
